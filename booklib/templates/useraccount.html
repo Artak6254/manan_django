@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="hy">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/booksCss/card.css' %}">
+    <title>Գրքադարան</title>
+
+
+</head>
+
+<body>
+
+    <header>
+        <div class="wrapper">
+            <div class="row">
+                <div class="logo">
+                    <img src="{% static 'images/detail.png' %}" alt="">
+                    <a href="{% url 'index' %}">Գր<span class="q">ք</span>ադարան</a>
+                    <img src="{% static 'images/detail.png' %}" alt="">
+                </div>
+                <div class="menu-btn" onclick="toggleMenu()">☰</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="login-register">
+        <nav class="right-navbar">
+     <form action="{% url 'logout' %}" method="post" style="display:inline;">
+          {% csrf_token %}
+          <button type="submit" class="logout_btn" >ԵԼՔ</button>
+      </form>
+        </nav>
+    </div>
+
+    <!-- INTRO -->
+    <section class="intro">
+        <div class="wrapper">
+            <div class="row">
+                <div class="content">
+                    <h1>ձեր ընտրած գրքերն այստեղ</h1>
+                    <button class="btn" onclick="scrollToLibrary()">Տեսնել գրքերը</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIBRARY -->
+  <section id="library-main">
+    <div class="wrapper">
+        <div class="row">
+
+            {% for item in selected_books %}
+                <div class="item">
+                    <img src="{% static 'images/toper.png' %}" alt>
+
+                    <div class="book">
+                        <a href="{{ item.book.pdf.url }}" target="_blank">
+                            <img src="{{ item.book.image.url }}" alt="b" />
+                            <hr />
+                            <h2 class="card_title">{{ item.book.title }}</h2>
+                            <p class="desc">
+                                <b>{{ item.book.author }}</b>
+                            </p>
+                        </a>
+                    </div>
+
+                    <img src="{% static 'images/bottom.png' %}" class="bottom_img" alt>
+                </div>
+            {% empty %}
+                <p>Դուք դեռ գրքեր չեք ընտրել 📚</p>
+            {% endfor %}
+
+           
+         <button class="back_btn" onclick="goBack()">Գնալ ետ</button>
+        </div>
+        
+    </div>
+</section>
+
+
+    <footer>
+        <div class="row">
+            <div class="logo">
+                <img src="{% static 'images/detail.png' %}" alt="">
+                <a href="#"> © 2026 Գրադարան | Բոլոր իրավունքները պաշտպանված են</a>
+                <img src="{% static 'images/detail.png' %}" alt="">
+            </div>
+        </div>
+
+    </footer>
+
+    <script src="{% static 'js/app.js' %}"></script>
+    <script>
+        function goBack() {
+            sessionStorage.setItem("shouldScroll", "true");
+            window.location.href = "/";
+        }
+    </script>
+</body>
+
+</html>

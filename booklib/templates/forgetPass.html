@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section id="login-register-section">
+
+  <div id="library">
+    <div class="wrapper">
+      <div class="row">
+
+        <div id="login">
+          <h2>Մոռացել Ես Գաղտնաբառդ՞</h2>
+          <form id="resetForm">
+            {% csrf_token %}
+
+            {{ form.email }}
+
+            <button type="submit">Ուղարկել նամակ</button>
+          </form>
+        </form>
+      </div>
+
+      <div class="container">
+        <div class="video_container">
+          <video src="{% static 'videos/forget.mp4' %}" loop autoplay
+            muted></video>
+          <h3>ձեր գրադարանն այստեղ</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+document.getElementById("resetForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const formData = new FormData(this);
+
+    fetch("{% url 'password_reset' %}", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => {
+        if (res.ok) {
+            alert("📩 Նամակը ուղարկվեց, ստուգիր email-ը");
+            window.location.href = "{% url 'index' %}";
+        } else {
+            alert("❌ Սխալ տեղի ունեցավ");
+        }
+    });
+});
+</script>
+{% endblock %}>

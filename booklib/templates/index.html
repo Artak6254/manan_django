@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="hy">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <title>Գրադարան</title>
+
+
+</head>
+
+<body>
+
+  <header>
+    <div class="wrapper">
+      <div class="row">
+        <div class="logo">
+          <img src="{% static 'images/detail.png' %}" alt="">
+          <a href="#">Գրադարան</a>
+          <img src="{% static 'images/detail.png' %}" alt="">
+        </div>
+        <div class="menu-btn" onclick="toggleMenu()">☰</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="login-register">
+    <nav class="right-navbar">
+        {% if user.is_authenticated %}
+        <a href="{% url 'user_account' %}">օգտվողի էջ</a>
+        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+          {% csrf_token %}
+          <button type="submit" class="logout_btn" >ԵԼՔ</button>
+      </form>
+        {% else %}
+        <a href="{% url 'contact' %}">կապ</a>
+      <a href="{% url 'login_page' %}">մուտք</a>
+      <a href="{% url 'register' %}">գրանցում</a>
+      {% endif %}
+    </nav>
+  </div>
+
+  <!-- INTRO -->
+  <section class="intro">
+    <div class="wrapper">
+      <div class="row">
+        <div class="content">
+          <h1>Բարի գալուստ մեր գրադարան</h1>
+          <p>Գիտելիքի աշխարհը սկսվում է այստեղ</p>
+          <button class="btn" onclick="scrollToLibrary()">Տեսնել գրքերը</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIBRARY -->
+  <section id="library-main">
+    <div class="wrapper">
+      <div class="row">
+
+        <div class="left-sidebar">
+          <img src="{% static 'images/toper.png' %}" alt="">
+
+          <div class="categories">
+
+             {% for cat in categories %}
+               <p>
+                 <a href="{% url 'category_books' cat.id %}">
+                  {{ cat.name }}
+                </a>
+              </p>
+              {% endfor %}
+        
+          </div>
+          <img src="{% static 'images/bottom.png' %}" alt="">
+        </div>
+
+        <div class="container">
+          <div class="video_container">
+            <video src="{% static 'videos/main.mp4' %}" loop autoplay muted></video>
+            <h3>ձեր գրադարանն այստեղ</h3>
+          </div>
+
+        </div>
+
+      </div>
+  </section>
+
+
+  <footer>
+    <div class="row">
+      <div class="logo">
+        <img src="{% static 'images/detail.png' %}" alt="">
+        <a href="#"> © 2026 Գրադարան | Բոլոր իրավունքները պաշտպանված են</a>
+        <img src="{% static 'images/detail.png' %}" alt="">
+      </div>
+    </div>
+
+  </footer>
+
+  <script src="{% static 'js/app.js' %}"></script>
+
+</body>
+
+</html>

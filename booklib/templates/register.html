@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- REGISTER -->
+<section id="login-register-section">
+  <div id="library">
+    <div class="wrapper">
+      <div class="row">
+
+        <div id="login">
+          <img src="{% static 'images/detail.png' %}" alt>
+          <h2>Գրանցում</h2>
+
+          <form method="POST" action="{% url 'register_user' %}">
+            {% csrf_token %}
+
+            <div class="form-group">
+              <label>Օգտվողի անուն</label>
+              {{ form.username }}
+              {{ form.username.errors }}
+            </div>
+
+            <div class="form-group">
+              <label>Էլ․ հասցե</label>
+              {{ form.email }}
+              {{ form.email.errors }}
+            </div>
+
+            <div class="form-group">
+              <label>Տարիք</label>
+              {{ form.age }}
+              {{ form.age.errors }}
+            </div>
+
+            <div class="form-group">
+              <label>Դպրոց / Դասարան</label>
+              {{ form.school }}
+              {{ form.school.errors }}
+            </div>
+
+            <div class="form-group">
+              <label>Գաղտնաբառ</label>
+              {{ form.password1 }}
+              {{ form.password1.errors }}
+            </div>
+
+            <div class="form-group">
+              <label>Կրկնել գաղտնաբառը</label>
+              {{ form.password2 }}
+              {{ form.password2.errors }}
+            </div>
+
+            <button type="submit">Գրանցվել</button>
+          </div>
+        </form>
+        {% if messages %}
+        {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
+        {% endif %}
+        <div class="container">
+          <div class="video_container">
+            <video src="{% static 'videos/register.mp4' %}" loop autoplay
+              muted></video>
+            <h3>ձեր գրադարանն այստեղ</h3>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+  {% endblock %}

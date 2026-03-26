@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- LIBRARY -->
+<section id="login-register-section">
+  <div id="library">
+    <div class="wrapper">
+      <div class="row">
+
+        <div id="login">
+          <img src="{% static 'images/detail.png' %}" alt>
+          <h2>Կապ Մեզ Հետ</h2>
+
+          <form method="POST" action="{% url 'contact' %}">
+            {% csrf_token %}
+
+            <input type="text" name="name" placeholder="Անուն" required>
+            <input type="email" name="email" placeholder="Էլ․ հասցե" required>
+            <textarea name="message"
+              placeholder="Սպասում եմ Ձեր նամակին"></textarea>
+
+            <button type="submit">Ուղարկել</button>
+          </form>
+        </div>
+
+        <div class="container">
+          <div class="video_container">
+            <video src="{% static 'videos/contact.mp4' %}" loop autoplay
+              muted></video>
+            <h3>ձեր գրադարանն այստեղ</h3>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  {% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- LIBRARY -->
+<section id="login-register-section">
+  <div id="library">
+    <div class="wrapper">
+      <div class="row">
+
+        <div id="login">
+          <img src="{% static 'images/detail.png' %}" alt>
+          <h2>Մուտք</h2>
+          <form method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+            <input type="email" id="email" name="email" placeholder="Էլ․հասցե"
+              required>
+            <input type="password" id="password" name="password"
+              placeholder="Գաղտնաբառ" required>
+
+            <button type="submit">Մուտք</button>
+
+            <div class="forgot-password">
+              <a href="{% url 'password_reset' %}" class="forgot">Մոռացել եք գաղտնաբառը՞</a>
+            </div>
+
+            {% if messages %}
+            {% for message in messages %}
+            <p style="color:red;">{{ message }}</p>
+            {% endfor %}
+            {% endif %}
+          </form>
+        </form>
+      </div>
+
+      <div class="container">
+        <div class="video_container">
+          <video src="{% static 'videos/login.mp4' %}" loop autoplay
+            muted></video>
+          <h3>ձեր գրադարանն այստեղ</h3>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}

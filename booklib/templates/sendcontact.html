@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/password_reset_complete.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="success-wrapper">
+    <div class="success-card">
+        <div class="icon">✓</div>
+        <h2>Նամակը հաջողությամբ ուղարկվել է </h2>
+        <p>Մենք հնարավորինս շուտ կապ կհաստատենք ձեր հետ</p>
+        <a href="{% url 'index' %}" class="login-btn">Գլխավոր էջ</a>
+    </div>
+</div>
+{% endblock %}
