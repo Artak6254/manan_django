@@ -78,6 +78,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'base.wsgi.application'
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://web-production-051ed.up.railway.app"
+]
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
