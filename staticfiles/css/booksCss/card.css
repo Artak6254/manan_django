@@ -1,0 +1,64 @@
+
+#library-main .row {
+  display: flex;
+  justify-content: center;
+  gap: 1%;
+  flex-wrap: wrap;
+}
+
+#library-main .item {
+  /* flex: 1 1 8rem; */
+  width: 140px;
+}
+
+#library-main .item .book {
+  border-right: 2px solid;
+  border-left: 2px solid;
+  padding: 4px;
+  overflow: hidden;
+}
+
+
+#library-main .item img {
+  width: 100%;
+}
+
+#library-main .item >img {
+    transform: translateY(14px);
+}
+
+#library-main .item .bottom_img {
+    transform: translateY(-4px);
+}
+
+.book img {
+  width: 100%;
+  height:180px;
+  object-fit: cover;
+}
+
+
+
+.card_title {
+  color: black;
+  padding-bottom: 4px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+
+hr {
+  border-top: 2px solid #c89b3f;
+  margin: 4px 0;
+}
+
+.item .book .desc {
+color: black;
+  font-size: 10px;
+  line-height: 1.1;
+  text-align: center;
+
+}
+
